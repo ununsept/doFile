@@ -1,0 +1,10 @@
+# ################################
+#
+# add "source ~/.fishomfrc" to $OMF_PATH/init.fish
+#
+# ################################
+
+
+alias l "ll -a"
+set PATH . ~/.bin/ $PATH
+set fish_greeting

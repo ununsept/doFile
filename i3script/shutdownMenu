@@ -1,0 +1,32 @@
+#!/bin/bash
+
+read -r -d '' asdf << EOM
+Nothing.
+Lock your i3.
+Logout from your i3.
+Shutdown your computer.
+Reboot your computer.
+Suspend your computer.
+Hibernate your computer.
+Suspend without lock.
+Hibernate without lock.
+EOM
+
+function lock {
+    i3lock -c 000000
+}
+
+
+result=$(echo  "$asdf" | rofi -dmenu "What do you wont to do" -lines 9)
+
+[ "$result" == "Nothing." ]                 && exit 0
+[ "$result" == "Lock your i3." ]            && lock 
+[ "$result" == "Logout from your i3." ]     && i3-msg exit
+[ "$result" == "Shutdown your computer." ]  && systemctl poweroff
+[ "$result" == "Reboot your computer." ]    && systemctl reboot
+[ "$result" == "Suspend your computer." ]   && lock && systemctl suspend
+[ "$result" == "Hibernate your computer." ] && lock && systemctl hibernate
+[ "$result" == "Suspend without lock." ]    && systemctl suspend
+[ "$result" == "Hibernate without lock." ]  && systemctl hibernate
+
+exit 0
