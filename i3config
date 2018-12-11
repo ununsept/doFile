@@ -1,0 +1,93 @@
+set $mod Mod4
+font pango:monospace 10
+floating_modifier $mod
+
+bindsym $mod+Return       exec i3-sensible-terminal
+bindsym $mod+Shift+Return exec xfce4-terminal -x ranger
+bindsym $mod+Ctrl+Return  exec ~/bin/keybordsMenu
+
+bindsym $mod+a               exec qutebrowser
+bindsym $mod+Shift+a         kill
+bindsym $mod+d               exec rofi -show drun
+bindsym $mod+Shift+d         exec rofi -show window
+bindsym $mod+Shift+f         exec rofi -e "change keybord"
+bindsym $mod+x               exec i3lock -c 000000
+bindsym $mod+Shift+x         exec ~/bin/shutdownMenu
+bindsym $mod+c               mode "resize"
+bindsym $mod+Shift+c         restart
+bindsym $mod+b               exec unclutter -grab -idle 1
+bindsym $mod+Shift+b         exec killall unclutter
+
+bindsym $mod+period          exec pactl set-sink-volume @DEFAULT_SINK@ +1%
+bindsym $mod+comma           exec pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym $mod+m               exec pactl set-sink-mute @DEFAULT_SINK@ 0
+bindsym $mod+Shift+m         exec mpc toggle
+bindsym $mod+Shift+comma     exec mpc prev
+bindsym $mod+Shift+period    exec mpc next
+
+# mov, focus, rsize window and gaps
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Ctrl+h resize shrink width 10 px or 10 ppt
+bindsym $mod+Ctrl+j resize grow height 10 px or 10 ppt
+bindsym $mod+Ctrl+k resize shrink height 10 px or 10 ppt
+bindsym $mod+Ctrl+l resize grow width 10 px or 10 ppt
+bindsym $mod+Ctrl+comma gaps inner all plus 5
+bindsym $mod+Ctrl+period gaps inner all minus 5
+bindsym $mod+Ctrl+m gaps outer all plus 5
+bindsym $mod+Ctrl+n gaps outer all minus 5
+
+# windows mode
+bindsym $mod+Shift+v split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+space floating toggle
+
+bindsym $mod+1                             workspace 01
+bindsym $mod+2                             workspace 02
+bindsym $mod+3                             workspace 03
+bindsym $mod+4                             workspace 04
+bindsym $mod+5                             workspace 05
+bindsym $mod+6                             workspace 06
+bindsym $mod+7                             workspace 07
+bindsym $mod+8                             workspace 08
+bindsym $mod+9                             workspace 09
+bindsym $mod+0                             workspace 10
+bindsym $mod+minus                         workspace 11
+bindsym $mod+plus                          workspace 12
+bindsym $mod+Shift+1     move container to workspace 01
+bindsym $mod+Shift+2     move container to workspace 02
+bindsym $mod+Shift+3     move container to workspace 03
+bindsym $mod+Shift+4     move container to workspace 04
+bindsym $mod+Shift+5     move container to workspace 05
+bindsym $mod+Shift+6     move container to workspace 06
+bindsym $mod+Shift+7     move container to workspace 07
+bindsym $mod+Shift+8     move container to workspace 08
+bindsym $mod+Shift+9     move container to workspace 09
+bindsym $mod+Shift+0     move container to workspace 10
+bindsym $mod+Shift+minus move container to workspace 11
+bindsym $mod+Shift+plus  move container to workspace 12
+
+client.focused          #000000AA #000000AA #FFFFFF #000000AA
+client.unfocused        #000000AA #000000AA #FFFFFF #000000AA
+client.focused_inactive #000000AA #000000AA #FFFFFF #000000AA
+client.urgent           #000000AA #000000AA #FFFFFF #000000AA
+hide_edge_borders both
+
+for_window [class="^.*"] border pixel 1
+new_window 1pixel
+gaps inner 10
+gaps outer 0
+
+exec compton --config ~/.config/compton.conf
+exec unclutter -grab -idle 1
+exec feh --bg-fill ~/.wallpaper
+exec setxkbmap -option caps:escape
+
+focus_follows_mouse yes

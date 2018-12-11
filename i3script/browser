@@ -1,2 +1,0 @@
-#!/bin/bash
-qutebrowser :open "$(cat webpages | rofi -dmenu)"

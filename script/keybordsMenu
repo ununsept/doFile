@@ -1,0 +1,26 @@
+#!/bin/bash
+
+read -r -d '' asdf << EOM
+Nothing.
+Swich to United State keybord (us).
+Swich to Polish keybord (pl).
+Swich to Czech keybord (cz).
+Swich to Rasian keybord (ru).
+Swich to Finish keybord (fi).
+EOM
+
+function lock {
+    i3lock -c 000000
+}
+
+
+result=$(echo  "$asdf" | rofi -dmenu "What do you wont to do")
+
+[ "$result" == "Nothing." ]                            && exit 0
+[ "$result" == "Swich to United State keybord (us)." ] && setxkbmap -layout "us"
+[ "$result" == "Swich to Finish keybord (fi)." ]       && setxkbmap -layout "fi"
+[ "$result" == "Swich to Polish keybord (pl)." ]       && setxkbmap -layout "pl"
+[ "$result" == "Swich to Czech keybord (cz)." ]       && setxkbmap -layout "cz"
+[ "$result" == "Swich to Rasian keybord (ru)." ]       && setxkbmap -layout "ru"
+
+exit 0
