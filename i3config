@@ -10,7 +10,8 @@ bindsym $mod+a               exec qutebrowser
 bindsym $mod+Shift+a         kill
 bindsym $mod+d               exec rofi -show drun
 bindsym $mod+Shift+d         exec rofi -show window
-bindsym $mod+Shift+f         exec rofi -e "change keybord"
+bindsym $mod+s               exec "scrot ~/tmp/$(date --iso-8601='seconds').png "
+bindsym $mod+Shift+s         exec "scrot ~/tmp/$(date --iso-8601='seconds').png -s -e 'xclip -selection c -t image/png < $f'"
 bindsym $mod+x               exec i3lock -c 000000
 bindsym $mod+Shift+x         exec ~/bin/shutdownMenu
 bindsym $mod+c               mode "resize"
